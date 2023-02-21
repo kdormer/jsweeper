@@ -1,0 +1,6 @@
+@startuml
+class Number {
+    -- Methods --
+    + <<constructor>> Number() : Number
+}
+@enduml

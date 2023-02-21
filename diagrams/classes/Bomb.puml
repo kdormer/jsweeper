@@ -1,0 +1,7 @@
+@startuml
+class Bomb {
+    -- Methods --
+    + <<constructor>> Bomb() : Bomb
+    + reveal()
+}
+@enduml

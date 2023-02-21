@@ -1,0 +1,26 @@
+@startuml
+header "Delete player profile"
+autonumber
+actor User
+participant Game
+participant Player
+participant PlayerWriter
+participant Board
+database "Player Data" as pd
+
+Game -> User: displayGameMenu()
+Game -> User: getUserInput() : int[]
+User --> Game: input
+Game -> Player: getAllPlayers() : Player[]
+Player -> PlayerWriter: getAll() : Player[]
+PlayerWriter -> pd: getAll() : Player[]
+pd --> PlayerWriter: player array
+PlayerWriter --> Player: player array
+Player --> Game: player array
+Game -> User: getPlayerChoice() : Player
+User --> Game: player choice
+Game -> Player: deletePlayer()
+Player -> PlayerWriter: deletePlayer()
+PlayerWriter -> pd: removeChild()
+Game -> User: displayGameMenu()
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class CellFactory {
+    -- Methods --
+    + getCellArray(rows : int, cols : int,
+     difficulty : Difficulty,
+     listener : MouseListener) : Cell[][]
+    - getCell(cellType : String) : Cell
+}
+@enduml

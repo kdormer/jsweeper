@@ -1,0 +1,9 @@
+@startuml
+enum Difficulty {
+    EASY
+    MEDIUM
+    HARD
+    IMPOSSIBLE
+}
+
+@enduml

@@ -1,0 +1,46 @@
+@startuml
+header "JSweeper Game"
+autonumber
+
+actor User
+participant Game
+participant GameFrame
+participant Player
+participant Board
+participant Cell
+participant CellFactory
+participant PlayerWriter
+database "Player Data" as pd
+
+User -> Game: launchGame()
+Game -> GameFrame: <<create>>
+GameFrame -> Board: <<create>>
+Board -> User: interfaceInit()
+Board -> CellFactory: getCellArray() : Cell[][]
+CellFactory -> Cell: <<create>>
+CellFactory --> Board: cell matrix
+Board -> User: showCells()
+Board -> Board: startGame()
+User -> Board: mouse click
+Board -> Cell: reveal()
+Board --> User: cell value
+
+alt cell instanceof Bomb
+    Board -> Board: stopGame()
+    Player -> PlayerWriter: storePlayer()
+    PlayerWriter -> pd: writeFile()
+    Board -> User: revealAllCells()
+    Board --> User: display winning player
+else cell instanceof Number
+    Board -> Player: switchPlayerTurn()
+    alt Number is empty
+    Board -> Cell: revealNeighbours()
+    end
+    Board -> Player: addScore()
+    Board -> User: updateScores()
+end
+Board -> User: updateScoreLabels()
+User -> Board: click reset button
+Board --> User: resetGame()
+
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class GameFrame {
+    -- Fields --
+    - p1 : Player
+    - p2 : Player
+    -- Methods --
+    + <<constructor>> GameFrame(p1 : Player, p2 : Player,
+     difficulty : Difficulty) : GameFrame
+    - setFrame()
+    - showFrame()
+}
+@enduml

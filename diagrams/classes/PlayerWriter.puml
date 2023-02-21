@@ -1,0 +1,16 @@
+@startuml
+class PlayerWriter {
+    -- Fields --
+    - dataFile : File
+    - document : Document
+    -- Methods --
+    + getAll() : Player[]
+    + writePlayer(player : Player)
+    + deletePlayer(player : Player)
+    + getID(name : String) : String
+    - serializePlayer(player : Player) : Element
+    - deserializePlayer(playerElement : Element) : Player
+    - writeFile()
+}
+
+@enduml

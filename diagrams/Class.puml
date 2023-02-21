@@ -1,0 +1,36 @@
+@startuml
+!include classes/Game.puml
+!include classes/GameFrame.puml
+!include classes/Board.puml
+!include classes/CellFactory.puml
+!include classes/Cell.puml
+!include classes/Bomb.puml
+!include classes/Number.puml
+!include classes/Player.puml
+!include classes/PlayerWriter.puml
+!include classes/Difficulty.puml
+
+class JFrame {}
+class JPanel {}
+class JButton {}
+interface MouseListener {
+    + mouseClicked(e : MouseEvent)
+    + mouseEntered(e : MouseEvent)
+    + mouseExited(e : MouseEvent)
+}
+
+JFrame --|> GameFrame
+JPanel --|> Board
+MouseListener --|> Board
+Board "1" --* "1" GameFrame
+JButton --|> Cell
+Cell --|> Bomb
+Cell --|> Number
+Cell "*" --* "1" Board
+CellFactory "1" ..> "*" Cell
+Board "0..1" ..> "*" CellFactory
+Player "2" --o "*" Board
+PlayerWriter "1" --* "*" Player
+Game "1" --> "0..1" GameFrame
+Difficulty "1" --* "*" Board
+@enduml

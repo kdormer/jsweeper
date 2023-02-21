@@ -1,0 +1,32 @@
+@startuml
+rectangle JSweeper {
+left to right direction
+actor User as u <<Player>>
+package "CLI Menu" {
+    usecase "Launch game" as launch
+    usecase "Create player profile" as create
+    usecase "View player profile info" as info
+    usecase "Delete player profile" as delete
+    usecase "View leaderboard" as leaderboard
+}
+package Game {
+    usecase "Reveal cell" as rc
+    usecase "Reset game"  as reset
+    usecase "Exit game"  as exit
+}
+usecase "Select player profile" as select
+u - rc : click\n cell
+u - reset : click\n reset button
+u - exit : click\n exit button
+u -- launch : option\n chosen
+u -- create : option\n chosen
+u -- info : option\n chosen
+u -- delete : option\n chosen
+u -- leaderboard : option\n chosen
+note top of select : Extend if User opts\n to launch Game with\n pre-existing Player\n profiles.
+launch <|.. select : <<extend>>
+info ..|> select : <<include>>
+delete ..|> select : <<include>>
+}
+@enduml
+

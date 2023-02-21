@@ -1,0 +1,139 @@
+@startuml
+class uk.ac.glos.CT5025.S1802423.Game {
+- void displayGameMenu()
+- void displayOptions(String[])
+- int[] getUserInput(String,int[],int,int)
+- String[] getName(String[])
+- Player getPlayerChoice(int)
+- void printSpacer()
+- void displayLeaderboard()
+- void displayPlayerMenu(Player)
+- void displayPlayerStats(Player)
+- Difficulty getDifficulty()
+- void launchGame(Player,Player)
++ {static} void main(String[])
+}
+class uk.ac.glos.CT5025.S1802423.GameFrame {
+- {static} int SIZE_X
+- {static} int SIZE_Y
+- Player p1
+- Player p2
+- Difficulty difficulty
+- void setFrame()
+- void showFrame()
+}
+class uk.ac.glos.CT5025.S1802423.CellFactory {
+- Cell getCell(String)
++ Cell[][] getCellArray(int,int,Difficulty,MouseListener)
+}
+class uk.ac.glos.CT5025.S1802423.Bomb {
++ void reveal()
+}
+class uk.ac.glos.CT5025.S1802423.Board {
+- Cell[][] cells
+- boolean gameEnd
+- Player p1
+- Player p2
+- int rows
+- int cols
+- int frameX
+- int frameY
+- Difficulty difficulty
+- JPanel menuPanel
+- JPanel gamePanel
+- JLabel p1ScoreLabel
+- JLabel p2ScoreLabel
+- JButton resetButton
+- void interfaceInit()
+- void showCells(Cell[][])
+- void revealAllCells()
+- void startGame()
+- void resetGame()
+- void stopGame()
+- void switchPlayer()
+- void updateTurnLabels()
+- void updateScores()
+- String getScoreString(int)
+- void addScore(int)
++ void mouseClicked(MouseEvent)
++ void mousePressed(MouseEvent)
++ void mouseReleased(MouseEvent)
++ void mouseEntered(MouseEvent)
++ void mouseExited(MouseEvent)
+}
+class uk.ac.glos.CT5025.S1802423.Player {
+- String id
+- String name
+- int highScore
+- int gamesPlayed
+- int winCount
+- int lossCount
+- int score
+- boolean playerTurn
+- boolean isGuest
+- {static} PlayerWriter pr
++ {static} Player[] getAllPlayers()
++ {static} HashMap<String,Integer> getLeaderboard()
++ void storePlayer()
++ void deletePlayer()
++ String getId()
++ void setId(String)
++ String getName()
++ void setName(String)
++ int getHighScore()
++ void setHighScore(int)
++ int getWinCount()
++ void setWinCount(int)
++ int getLossCount()
++ void setLossCount(int)
++ int getScore()
++ void setScore(int)
++ void addScore(int)
++ boolean isPlayerTurn()
++ void setPlayerTurn(boolean)
++ void switchPlayerTurn()
++ int getGamesPlayed()
++ void setGamesPlayed(int)
++ boolean isGuest()
+}
+class uk.ac.glos.CT5025.S1802423.PlayerWriter {
+- File dataFile
+- Document document
+- DocumentBuilder builder
++ Player[] getAll()
++ void writePlayer(Player)
++ void deletePlayer(Player)
+- Element getRootElement()
+- void setNewDocument()
+- void documentInit()
+- void writeFile()
+- Node getPlayer(Player)
+- Element serializePlayer(Player)
+- Player deserializePlayer(Element)
++ String getID(String)
++ HashMap<String,Integer> sortHashMap(HashMap<String,Integer>)
+}
+class uk.ac.glos.CT5025.S1802423.Number {
+}
+abstract class uk.ac.glos.CT5025.S1802423.Cell {
++ {static} int hiddenCells
++ {static} int bombCount
++ ArrayList<Cell> neighbours
+# boolean isRevealed
+# char value
++ void reveal()
++ boolean getIsRevealed()
++ void revealNeighbours()
++ boolean isEmpty()
++ int getValue()
++ void setValue(char)
+}
+
+
+uk.ac.glos.CT5025.S1802423.JFrame <|-- uk.ac.glos.CT5025.S1802423.GameFrame
+uk.ac.glos.CT5025.S1802423.Cell <|-- uk.ac.glos.CT5025.S1802423.Bomb
+java.awt.event.MouseListener <|.. uk.ac.glos.CT5025.S1802423.Board
+uk.ac.glos.CT5025.S1802423.JPanel <|-- uk.ac.glos.CT5025.S1802423.Board
+uk.ac.glos.CT5025.S1802423.Cell <|-- uk.ac.glos.CT5025.S1802423.Number
+uk.ac.glos.CT5025.S1802423.JButton <|-- uk.ac.glos.CT5025.S1802423.Cell
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+abstract class Cell {
+    -- Fields --
+    {static} + hiddenCells : int=0
+    {static} + bombCount : int=0
+    + neighbours : ArrayList<Cell>
+    # isRevealed : boolean=false
+    # value : char
+    -- Methods --
+    + <<constructor>> Cell() : Cell
+    + reveal()
+    + revealNeighbours()
+    .. Getters ..
+    + getIsRevealed() : boolean
+    + isEmpty() : boolean
+    + getValue() : char
+    .. Setters ..
+    + setValue(value : char)
+}
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+class Player {
+    -- Fields --
+    - id : String
+    - name : String
+    - gamesPlayed : int
+    - winCount : int
+    - lossCount : int
+    - isGuest : boolean
+    -- Methods --
+    + <<constructor>> Player(id : String,
+    name : String, highScore : int, gamesPlayed : int,
+    winCount : int, lossCount : int) : Player
+    + <<constructor>> Player(name : String) : Player
+    {static} + getLeaderboard() : HashMap<String, Integer>
+    + storePlayer()
+    + deletePlayer()
+}
+@enduml

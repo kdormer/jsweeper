@@ -1,0 +1,19 @@
+@startuml
+class Board {
+    -- Fields --
+    - cells : Cell[][]
+    - p1 : Player
+    - p2 : Player
+    - difficulty : Difficulty
+    -- Methods --
+    + <<constructor>> Board() : Board
+    - interfaceInit()
+    - startGame()
+    - resetGame()
+    - stopGame()
+    - switchPlayer()
+    - updateScores()
+    - showCells()
+    - revealAllCells()
+}
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+class Game {
+    -- Methods --
+    + main(args : String[])
+    - displayGameMenu()
+    - displayOptions(options : String[])
+    - getUserInput(prompt : String, choice int[],
+     min : int, max : int) : int[]
+    - getName(name : String[]) : String[]
+    - getPlayerChoice(playerNumber : int) : Player
+    - getDifficulty() : Difficulty
+    - displayPlayerMenu(player : Player)
+    - displayPlayerStats(player : Player)
+    - displayLeaderboard()
+    - launchGame(p1 : Player, p2 : Player)
+}
+@enduml
